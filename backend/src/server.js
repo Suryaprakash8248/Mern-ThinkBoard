@@ -4,7 +4,7 @@ dotenv.config();
 import express from "express";
 import router from "./routers/notesRouter.js";
 import { connectDb } from "./config/db.js";
-import ratelimiter from "../middleware/rateLimiter.js";
+//import ratelimiter from "../middleware/rateLimiter.js";
 import cors from "cors";
 import path from "path";
 
@@ -17,17 +17,18 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 app.use(express.json());
-app.use(ratelimiter);
+//app.use(ratelimiter);
 
 app.use("/api/notes", router);
 
 
 if (process.env.NODE_ENV === "production") {
-   app.use(express.static(path.join(__dirname,"../../frontend/dist")));
+ app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.use((req, res) => {
-  res.sendFile(path.join(__dirname,"../../frontend/dist/index.html"));
-})}
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
+}
 
 
 connectDb().then(() => {
