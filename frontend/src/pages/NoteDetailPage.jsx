@@ -19,7 +19,6 @@ import { Link } from 'react-router';
         try {
         const response = await api.get(`/notes/${id}`);
         setNote(response.data);
-        //console.log(note);
         setOriginalNote(response.data);
         
       } catch (error) {
@@ -67,8 +66,8 @@ import { Link } from 'react-router';
     }
 
     return (
-      <div className="min-h-screen bg-base-200 flex items-center justify-center">
-  <div className="w-full max-w-2xl bg-base-100 p-8 rounded-lg shadow-md">
+    <div className="min-h-screen bg-base-200 flex items-center justify-center">
+    <div className="w-full max-w-2xl bg-base-100 p-8 rounded-lg shadow-md">
     {/* Top bar */}
     <div className="flex items-center justify-between mb-6">
       <Link to="/" className="btn btn-ghost">
